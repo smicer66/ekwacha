@@ -1,0 +1,31 @@
+page-analysis {
+	.scroll-content{
+		padding: 0px !important;
+		background-color: #DDDDDD !important;
+	}
+	
+	/*.scroll-content {
+		background-color: map-get($colors, light);
+	}*/
+
+	ion-card-header {
+		font-weight: bold;
+	}
+	
+	.item-md{
+		font-size: 1.2rem;
+	}
+	
+	.card-header-md{
+		font-size: 1.2rem;
+	}
+	
+	.scroll-content{
+		padding-left: 10px !important; padding-right: 10px !important;
+	}
+	
+	.diavlo_black_37{
+		font-family: Diavlo_BLACK_II_37 !important
+	}
+	
+}

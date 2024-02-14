@@ -1,0 +1,66 @@
+<!--
+  Generated template for the VerifyBankAccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+    <ion-title style="color: #000 !important; text-align: right; font-size: 1.5rem">
+		<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Bank Account Confirmation</span>
+	</ion-title>
+	<!--<ion-buttons start> <button (click)="openModal()" style="background-color: #EC2E24 !important"> <ion-icon name="arrow-back" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+		<!--<ion-toolbar>
+			<ion-buttons end>
+			  <button ion-button color="primary">Skip</button>
+			</ion-buttons>
+		</ion-toolbar>-->
+		<form [formGroup]="VerifyBankAccountPageForm">
+			<div class="headertitle">
+				<strong style="font-size: 2rem !important; white-space: normal">Just to confirm your bank account...</strong><br>
+				<span style="white-space: normal">Provide the One-Time Password sent to the mobile phone mapped to your bank account</span>
+			</div>
+			
+			<!--<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<button ion-button full color="secondary"  small>Select Your Country Code</button>
+			</ion-item>-->
+			<div class="formelement">
+				<fieldset>
+					<legend>OTP Sent To</legend>
+					<button style="padding-right: 0px !important; margin-right: 0px !important; padding: 10px !important; padding-top: 21px !important; background-color: #E2F5D6 !important; font-size: 1.2em !important; box-shadow: none !important; webkit-box-shadow: none !important; color: #000 !important; float: left !important; font-weight: bold !important; padding-right: 0px !important" ion-button item-start icon-start small>
+						<ion-avatar item-start>
+							<img src="assets/imgs/country/zm.png">
+						</ion-avatar>
+						+260
+					</button>
+					<ion-label style="padding-left: 0px !important; font-weight: bold; float: left !important; font-size: 1.2em">96******1</ion-label>
+				</fieldset>
+			</div>
+			
+			<div class="formelement">
+				<fieldset>
+					<legend>Provide The One-Time Password</legend>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="verifyBankAccountData.otp1" formControlName="otp1" id="otp1" type="tel" required placeholder="" maxLength="1"></ion-input>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="verifyBankAccountData.otp2" formControlName="otp2" id="otp2" type="tel" required placeholder="" maxLength="1"></ion-input>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="verifyBankAccountData.otp3" formControlName="otp3" id="otp3" type="tel" required placeholder="" maxLength="1"></ion-input>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="verifyBankAccountData.otp4" formControlName="otp4" id="otp4" type="tel" required placeholder="" maxLength="1"></ion-input>
+				</fieldset>
+			</div>
+			
+		</form>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" (click)="doVerifyBankAccount(verifyBankAccountData)" large>Confirm Bank Account</button>
+	</ion-toolbar>
+</ion-footer>

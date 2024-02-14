@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-color: #fff !important">
+    <ion-title style="color: #000 !important; text-align: right; font-size: 1.5rem">
+		<span style="color: #000 !important; text-align: right; font-size: 1.5rem">Pay School Fees</span>
+	</ion-title>
+	<!--<ion-buttons start> <button (click)="openModal()" style="background-color: #EC2E24 !important"> <ion-icon name="arrow-back" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-img">
+	<form [formGroup]="paySchoolFeeForm">
+		<!--<div class="errormsg">
+        <div *ngIf="username.errors && username.touched">
+          <p>Username is required.</p>
+        </div>
+		http://shikola.com/api/student-school-fee-query/DMP800/Z2QNO2BZ9W
+		</div>-->
+		<ion-item padding-right>
+			<strong style="font-size: 2rem !important">School Fees Payments</strong><br>
+			<span style="white-space: normal">You can pay school fees from your wallet. Verify your student Id first to get details of the fees before paying</span>
+		</ion-item>
+		<ion-list>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Specify School</ion-label>
+				<ion-select [(ngModel)]="paySchoolFeeData.school" [formControl]="school" id="school">
+					<ion-option *ngFor="let school_ of school_fees_list" value="{{school_.id}}">{{school_.name}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input [(ngModel)]="paySchoolFeeData.student_id_number" [formControl]="student_id_number" id="student_id_number" type="text" required placeholder="Student Id Number"></ion-input>
+				<button style="align-self: flex-end; box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important" ion-button small (click)="verifyStudent(paySchoolFeeData.student_id_number)" item-end ><ion-icon name="checkmark"></ion-icon> &nbsp;Verify</button>
+			</ion-item>
+			<ion-item *ngIf="isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Student Name:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>Paul Simon</ion-label>
+			</ion-item>
+			<ion-item *ngIf="isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Fee Amount:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>K34,000.00</ion-label>
+			</ion-item>
+			<ion-item *ngIf="isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Transaction ID:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>7812-4919-3991</ion-label>
+			</ion-item>
+			<ion-item *ngIf="isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input [(ngModel)]="paySchoolFeeData.amount" [formControl]="amount" id="amount" type="tel" required placeholder="Amount to Pay"></ion-input>
+			</ion-item>
+
+		</ion-list>
+    </form>
+</ion-content>
+
+
+<ion-footer no-shadow *ngIf="isVerified">
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="doPaySchoolFeeStepOne(paySchoolFeeData)">Verify</button>
+	</ion-toolbar>
+</ion-footer>

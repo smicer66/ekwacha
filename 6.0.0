@@ -1,0 +1,6 @@
+ekwacha@0.0.1 c:\ionicprojects\ekwacha
++-- UNMET PEER DEPENDENCY @angular/common@9.0.0
++-- UNMET PEER DEPENDENCY @angular/core@5.0.0
++-- UNMET PEER DEPENDENCY @ionic-native/core@4.3.2
+`-- UNMET PEER DEPENDENCY rxjs@5.5.2
+

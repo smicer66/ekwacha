@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Mobile Top-Up</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="mobileTopUpForm">
+		<ion-item padding-right>
+			<strong style="font-size: 2rem !important">Airtime Top-Up</strong><br>
+			<span style="white-space: normal">Purchase airtime from your wallet. Choose PINLESS option for direct/VTU top up. Choose PIN option to receive token in an SMS</span>
+		</ion-item>
+      <!--<div class="errormsg">
+        <div *ngIf="username.errors && username.touched">
+          <p>Username is required.</p>
+        </div>
+		
+      </div>-->
+		<ion-list>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Network*:</ion-label>
+				<ion-select [(ngModel)]="mobileTopUpData.network_provider" placeholder="--Select One--" [formControl]="network_provider" id="network_provider" (ionChange)="onNetworkChange($event)">
+					<ion-option *ngFor="let telco of telcolist" value="{{telco.id}}">{{telco.name}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Pin Or Pinless*:</ion-label>
+				<ion-select [(ngModel)]="mobileTopUpData.pin_pinless" placeholder="--Select One--" [formControl]="pin_pinless" id="pin_pinless" (ionChange)="onNetworkChange($event)">
+					<ion-option value="pin">PIN</ion-option>
+					<ion-option value="pinless">PINLESS</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item *ngIf="mobileTopUpData.pin_pinless=='pin'" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Amount*:</ion-label>
+				<ion-select [(ngModel)]="mobileTopUpData.pinamount" [formControl]="pinamount" id="pinamount" placeholder="--Select One--">
+					<ion-option *ngFor="let denomination of telcodenominations" value="{{denomination}}">K{{denomination}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item *ngIf="displayAmount==true" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="mobileTopUpData.receipient" formControlName="receipient" id="receipient" type="tel" required placeholder="Receipients Number*"></ion-input>
+				<button style="padding: 0px !important; background-color: #E2F5D6 !important; font-size: 1.0em !important; box-shadow: none !important; webkit-box-shadow: none !important; color: #000 !important" ion-button item-start icon-start small (click)="openMobileNumberModal()">
+					<ion-avatar item-start>
+						<img src="assets/imgs/country/zm.png">
+					</ion-avatar>
+					+260
+				</button>
+			</ion-item>
+			<ion-item *ngIf="mobileTopUpData.pin_pinless=='pinless'" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="mobileTopUpData.pinlessamount" [formControl]="pinlessamount" id="pinlessamount" type="tel" required placeholder="Amount"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="displayAmount==true" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Your Pin:</ion-label>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="mobileTopUpForm.pin1" formControlName="pin1" id="pin1" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="mobileTopUpForm.pin2" formControlName="pin2" id="pin2" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="mobileTopUpForm.pin3" formControlName="pin3" id="pin3" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="mobileTopUpForm.pin4" formControlName="pin4" id="pin4" type="tel" required placeholder="" maxLength="1"></ion-input>
+			</ion-item>
+
+		</ion-list>
+    </form>
+</ion-content>
+
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="doPurchaseMobileTopUp(mobileTopUpData)">Buy Airtime</button>
+	</ion-toolbar>
+</ion-footer>

@@ -1,0 +1,125 @@
+<!--
+  Generated template for the AnalysisPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+
+<ion-header style="padding-left: 10px !important; padding-right: 10px !important">
+	<ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+		
+		<ion-title style="color: #fff !important;">Kachi Akujua</ion-title>
+		<button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	</ion-navbar>
+</ion-header>-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	<button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Kachi Akujua</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #DDDDDD !important;">
+	<div ion-row style="border-bottom:4px solid #ff6600; background-color: #E2F5D6; padding:10px !important; padding-top: 0px !important; border-radius: 0% 0% 10% 10%;">
+		<div ion-col col-12 style="color: #000; background-color: #E2F5D6; padding-left: 0px !important; border-radius: 15px 15px 15px 15px !important">
+			<div class="col col-12" style="padding-left: 0px !important;"><!--*ngFor="let account of accounts_list"-->
+				<div style="font-size:13px !important; font-weight: bold; text-align: center !important;"  class="diavlo_black_37">
+					Available Balance
+				</div>
+				<div justify-content-start style="font-size:1.7em !important; font-weight: normal; text-align: center !important; padding-bottom: 10px !important"  class="diavlo_black_37">
+					ZMW {{formatNumber(customerAccount.availableBalance, 2)}}<!--account.account_number-->
+				</div>
+				<div style="clear: both; font-size:13px !important; font-weight: bold; text-align: center !important;"  class="diavlo_black_37">
+					Wallet Number
+				</div>
+				<div justify-content-end style="font-size:1.7em !important; font-weight: normal; text-align: center !important;"  class="diavlo_black_37">
+					{{customerAccount.accountNumber}} <!--account.balance-->
+				</div>
+			</div>
+		</div>
+		<div ion-col col-12 style="background-color:#E2F5D6 !important; padding: 0px !important">
+			<ion-card style="margin: 0px !important; padding: 0px !important; background-color:#E2F5D6 !important; box-shadow: none !important; -webkit-box-shadow: none !important">
+				<ion-card-header style="color: #000; font-weight: 100 !important; padding-left: 0px !important; padding-top: 0px !Important; text-align: center !important"  class="diavlo_black_37"><u>Your Spending Pattern</u>
+				</ion-card-header>
+				<ion-card-content style="padding:0px !important">
+					<canvas #lineCanvas></canvas>
+				</ion-card-content>
+			</ion-card>
+		</div>
+		<div ion-col col-12 style="background-color:#E2F5D6 !important; padding: 0px !important; text-align: center">
+			<button ion-button round small (click)="goToAirtime()" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important" color="danger"><ion-icon name="phone-portrait" item-left></ion-icon>&nbsp;&nbsp; Airtime</button>
+			<button ion-button round small (click)="goToUtilities()" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important" color="secondary"><ion-icon name="hammer" item-left></ion-icon>&nbsp;&nbsp; Utilities</button>
+			<button ion-button round small (click)="goToPayments()" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important" color="dark"><ion-icon name="person" item-left></ion-icon>&nbsp;&nbsp; Payments</button>
+		</div>
+	</div>
+	<!--<div ion-row style="padding-right: 0px !important;">
+		<ion-list ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<ion-item *ngFor="let transaction of transactionslist">
+				<div style="float:left !important">
+					{{transaction.date}} - <strong>{{transaction.currency}}{{transaction.amount}}</strong>
+				</div>
+				<div col-12 style="clear:both; !important">
+					<strong>{{transaction.transaction}}</strong>
+				</div>
+				
+			</ion-item>
+		</ion-list>
+		
+	</div>-->
+	<div ion-row style="padding-right: 0px !important; padding-top: 10px !important">
+		<div ion-col col-4 style="clear:both; !important; padding:10px !important; padding-bottom: 20px !important;">
+			<div ion-col col-12 style="clear:both; !important; background-color: #fff !important; border-radius: 20% 20% 20% 20% !important;">
+				
+				<div justify-content-center  style="padding: 5px !important; text-align: center">
+					<img src="assets/imgs/smartphone.png"><br>
+					<div style="padding-top:5px !important"  class="diavlo_black_37">Bank<br>Accounts</div>
+				</div>
+			</div>	
+		</div>
+		<div ion-col col-4 style="clear:both; !important; padding:10px !important; padding-bottom: 20px !important;">
+			<div ion-col col-12 style="clear:both; !important; background-color: #fff !important; border-radius: 20% 20% 20% 20% !important;">
+				<div justify-content-center  style="padding: 5px !important; text-align: center">
+					<img src="assets/imgs/smartphone.png"><br>
+					<div style="padding-top:5px !important"  class="diavlo_black_37">Airtime<br>TopUp</div>
+				</div>
+			</div>
+		</div>
+		<div ion-col col-4 style="clear:both; !important; padding:10px !important; padding-bottom: 20px !important;">
+			<div ion-col col-12 style="clear:both; !important; background-color: #fff !important; border-radius: 20% 20% 20% 20% !important;">
+				<div justify-content-center  style="padding: 5px !important; text-align: center">
+					<img src="assets/imgs/smartphone.png"><br>
+					<div style="padding-top:5px !important"  class="diavlo_black_37">Funds<br>Transfer</div>
+				</div>
+			</div>
+		</div>
+		<div ion-col col-4 style="clear:both; !important; padding:10px !important; padding-bottom: 20px !important;">
+			<div ion-col col-12 style="clear:both; !important; background-color: #fff !important; border-radius: 20% 20% 20% 20% !important;">
+				<div justify-content-center  style="padding: 5px !important; text-align: center">
+					<img src="assets/imgs/smartphone.png"><br>
+					<div style="padding-top:5px !important"  class="diavlo_black_37">Bill<br>Payments</div>
+				</div>
+			</div>	
+		</div>
+		<div ion-col col-4 style="clear:both; !important; padding:10px !important; padding-bottom: 20px !important;">
+			<div ion-col col-12 style="clear:both; !important; background-color: #fff !important; border-radius: 20% 20% 20% 20% !important;">
+				<div justify-content-center  style="padding: 5px !important; text-align: center">
+					<img src="assets/imgs/smartphone.png"><br>
+					<div style="padding-top:5px !important"  class="diavlo_black_37">School<br>Fees</div>
+				</div>
+			</div>
+		</div>
+		<div ion-col col-4 style="clear:both; !important; padding:10px !important; padding-bottom: 20px !important;">
+			<div ion-col col-12 style="clear:both; !important; background-color: #fff !important; border-radius: 20% 20% 20% 20% !important;">
+				<div justify-content-center  style="padding: 5px !important; text-align: center">
+					<img src="assets/imgs/smartphone.png"><br>
+					<div style="padding-top:5px !important"  class="diavlo_black_37">My<br>Settings</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ion-content>

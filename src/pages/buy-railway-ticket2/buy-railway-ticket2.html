@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Buy ZRL Tickets 2/3</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+		<ion-list ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<ion-item padding-right>
+				<strong style="font-size: 2rem !important; white-space: normal">Select Your Preferred Outward Trip</strong><br>
+				<span style="white-space: normal">Press the SELECT TRAIN TRIP button to select your preffered outward trip</span>
+			</ion-item>
+			<ion-item *ngFor="let availabletrain of availabletrainlist" ion-icon="contact" [style.background-color]="availabletrain.bgColor">
+				<!--<ion-icon name="phone-jet" item-left></ion-icon>-->
+				<span style="font-size: 1.2em"><strong>#{{availabletrain.tripCode}}</strong></span><br>
+				<span style="font-size: 1.4em"><strong>{{availabletrain.originStation}} to {{availabletrain.arrivalStation}}</strong></span><br>
+				<span style="font-size: 1.0em">{{availabletrain.formattedDepartureDate}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Adult:</strong> K{{outwardTicketPrices['ADULT'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Child:</strong> K{{outwardTicketPrices['CHILD'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Seniors:</strong> K{{outwardTicketPrices['ADULT'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Specially-Abled:</strong> K{{outwardTicketPrices['ADULT'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-right">
+					<button [ngStyle]="{'background-color': trip_types[0]!=null && trip_types[0].tripCode==availabletrain.tripCode ? '#32db64' : '#488aff'}" style="align-self: flex-end; box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important" ion-button small (click)="goToSelectTrain(availabletrain, 0)" item-end ><ion-icon *ngIf="trip_types[0]!=null && trip_types[0].tripCode==availabletrain.tripCode" name="checkmark"></ion-icon> <span *ngIf="(trip_types[0]==null || (trip_types[0]!=null && trip_types[0].tripCode!=availabletrain.tripCode))">Select Train Trip</span><span *ngIf="trip_types[0]!=null && trip_types[0].tripCode==availabletrain.tripCode">Selected Train Trip</span></button>
+				</span>
+			</ion-item>
+			<ion-item padding-right *ngIf="returntrainlist!=null">
+				<hr>
+			</ion-item>
+			<ion-item padding-right *ngIf="returntrainlist!=null">
+				<strong style="font-size: 2rem !important; white-space: normal">Select Your Preferred Return Trip</strong><br>
+				<span style="white-space: normal">Press the SELECT TRAIN TRIP button to select your preffered return trip</span>
+			</ion-item>
+			<ion-item *ngFor="let returntrain of returntrainlist" ion-icon="contact" [style.background-color]="returntrain.bgColor">
+				<!--<ion-icon name="phone-jet" item-left></ion-icon>-->
+				<span style="font-size: 1.2em"><strong>#{{returntrain.tripCode}}</strong></span><br>
+				<span style="font-size: 1.4em"><strong>{{returntrain.originStation}} to {{returntrain.arrivalStation}}</strong></span><br>
+				<span style="font-size: 1.2em">{{returntrain.formattedDepartureDate}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Adult:</strong> K{{outwardTicketPrices['ADULT'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Child:</strong> K{{outwardTicketPrices['CHILD'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Seniors:</strong> K{{outwardTicketPrices['ADULT'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-left"><strong>Specially-Abled:</strong> K{{outwardTicketPrices['ADULT'].amount}}</span><br>
+				<span style="font-size: 1.2em" class="pull-right">
+					<button [ngStyle]="{'background-color': trip_types[1]==null ? '#488aff' : '#32db64'}" style="align-self: flex-end; box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important" ion-button small (click)="goToSelectTrain(returntrain, 1)" item-end ><ion-icon *ngIf="trip_types[1]!=null" name="checkmark"></ion-icon> <span *ngIf="trip_types[1]==null">Select Train Trip</span><span *ngIf="trip_types[1]!=null">Selected Train Trip</span></button>
+				</span>
+			</ion-item>
+		</ion-list>
+</ion-content>

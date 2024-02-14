@@ -1,0 +1,52 @@
+<!--
+  Generated template for the ListGroupsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	<button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="viewCtrl.dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">My Groups</span>
+	</ion-title>
+	<!--<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+	
+	<ion-item padding-right>
+		<strong style="font-size: 2rem !important">Your Groups</strong><br>
+		<span style="white-space: normal">Hello! You can find all your groups here. Click on any group to view updates and activity happening in the group</span>
+	</ion-item>
+	<ion-item padding-right>
+		<ion-searchbar (ionInput)="getGroups($event)"></ion-searchbar>
+	</ion-item>
+	
+	<ion-item [style.background-color]="group.bgColor" class="ion-item_1" *ngFor="let group of groups_list" (click)="goToGroup(group)" style="padding: 0px !important; border-bottom: 2px solid #4B8D23;">
+		<div col-2 style="float: left !important; font-size: 1.3em !important;">
+			<div [style.background-color]="group.iconBgColor" style="text-align: center; font-size: 1.6em !important; padding-top: 5px !important; padding-bottom: 5px !Important">
+				<strong style="color: #fff !important;">{{group.iconTxt}}</strong>
+			</div>
+		</div>
+		<div col-10 style="float: left !important; font-size: 1.3em !important;">
+			<strong>{{group.groupName}}</strong><br>
+			<div style="float: left !important; font-size: 0.6em !important;">Contributions: K{{formatNumber(group.totalContributions, 2)}}</div>
+			<div style="float: right !important; font-size: 0.6em !important;">Members: {{group.totalMembers}}</div>
+			<div style="clear: both !important; float: left !important; font-size: 0.6em !important;">My Payments: K{{formatNumber(group.myTotalContributions, 2)}}</div>
+			<div style="float: right !important; font-size: 0.6em !important;">Status: {{group.isOpen}}</div>
+		</div>
+		<!--<div ion-col col-12 style="clear:both !important; padding: 0px !important; text-align: center">
+			<button ion-button round small (click)="transferMoney(acct)" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important" color="danger"><ion-icon name="people" item-left></ion-icon>&nbsp;&nbsp;View Group</button>
+			<button ion-button round small (click)="removeAccount(acct)" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important" color="secondary"><ion-icon name="cash" item-left></ion-icon>&nbsp;&nbsp; Contributions</button>
+			<button ion-button round small (click)="removeAccount(acct)" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important" color="secondary"><ion-icon name="infinite" item-left></ion-icon>&nbsp;&nbsp; Loans</button>
+		</div>-->
+	</ion-item>
+</ion-content>

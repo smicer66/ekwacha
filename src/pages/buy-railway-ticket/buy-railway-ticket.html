@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-color: #fff !important">
+    <ion-title style="color: #000 !important; text-align: right; font-size: 1.5rem">
+		<span style="color: #000 !important; text-align: right; font-size: 1.5rem">Buy ZRL Tickets - 1/3</span>
+	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="">
+  <!--bg-img<div class="main-content">
+
+    <div padding  style="width: 100%;">-->
+    <form [formGroup]="buyRailwayTicketForm">
+		<ion-item padding-right>
+			<strong style="font-size: 2rem !important">Book A Railway Trip</strong><br>
+			<span style="white-space: normal">Traveling? Do you know you can travel by rail. Purchase ZRL trip tickets from the comfort of your phone.</span>
+		</ion-item>
+      <!--<div class="errormsg">
+        <div *ngIf="username.errors && username.touched">
+          <p>Username is required.</p>
+        </div>
+		
+      </div>-->
+      <ion-list>
+		<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+			<ion-label style="padding-left: 15px !important; color: #000">Trip Type:</ion-label>
+			<ion-select [(ngModel)]="buyRailwayTicketData.trip_type" placeholder="--Select One--" [formControl]="trip_type" id="trip_type">
+				<ion-option value="one-way">One-Way</ion-option>
+				<ion-option value="return">Return</ion-option>
+			</ion-select>
+		</ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          <ion-label style="padding-left: 15px !important; color: #000">From</ion-label>
+          <ion-select [(ngModel)]="buyRailwayTicketData.source" [formControl]="source" id="source" (ionChange)="onSourceChange($event)">
+				<ion-option *ngFor="let source_ of sourcelist" value="{{source_.stationId}}###{{source_.stationName}}###{{source_.stationCode}}">{{source_.stationName}}</ion-option>
+		  </ion-select>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          <ion-label style="padding-left: 15px !important; color: #000">To</ion-label>
+          <ion-select [(ngModel)]="buyRailwayTicketData.destination" [formControl]="destination" id="destination">
+				<ion-option *ngFor="let destination_ of destinationlist" value="{{destination_.stationId}}###{{destination_.stationName}}###{{destination_.stationCode}}">{{destination_.stationName}}</ion-option>
+		  </ion-select>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 15px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-datetime displayFormat="MMM/DD/YY" [(ngModel)]="buyRailwayTicketData.trip_date" [formControl]="trip_date" id="trip_date" required placeholder="Trip Start Date"></ion-datetime>
+        </ion-item>
+        <ion-item padding-right *ngIf="buyRailwayTicketData.trip_type=='return'" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 15px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-datetime displayFormat="MMM/DD/YY" [(ngModel)]="buyRailwayTicketData.return_date" [formControl]="return_date" id="return_date" required placeholder="Trip Return Date"></ion-datetime>
+        </ion-item>
+        <!--<div ion-col col-5 style="float: left !important">-->
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<!--<ion-label style="padding-left: 15px !important; color: #000">Adults</ion-label>-->
+				<ion-input [(ngModel)]="buyRailwayTicketData.adults" [formControl]="adults" id="adults" type="tel" required value="0"></ion-input>
+			<!--</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Child</ion-label>-->
+				<ion-input [(ngModel)]="buyRailwayTicketData.child" [formControl]="child" id="child" type="tel" required value="0" item-end float-right></ion-input>
+			</ion-item>
+		
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          <ion-label style="padding-left: 15px !important; color: #000"></ion-label>
+          <ion-select [(ngModel)]="buyRailwayTicketData.train" [formControl]="train" id="train" placeholder="-Select Ticket Class-">
+				<ion-option *ngFor="let train_ of trainlist" value="{{train_.vehicleSeatClassId}}###{{train_.vehicleSeatClassName}}###{{train_.vehicleSeatClassCode}}">{{train_.vehicleSeatClassName}}</ion-option>
+		  </ion-select>
+        </ion-item>
+        <!--<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-input [(ngModel)]="buyRailwayTicketData.first_name" [formControl]="first_name" id="first_name" type="number" required placeholder="Lead Passenger First Name"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-input [(ngModel)]="buyRailwayTicketData.last_name" [formControl]="last_name" id="last_name" type="number" required placeholder="Lead Passenger Surname"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-input [(ngModel)]="buyRailwayTicketData.other_name" [formControl]="other_name" id="other_name" type="number" required placeholder="Lead Passenger Other Name"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-input [(ngModel)]="buyRailwayTicketData.national_id_number" [formControl]="national_id_number" id="national_id_number" type="number" required placeholder="Lead Passenger Natl Id Number"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-input [(ngModel)]="buyRailwayTicketData.mobile_number" [formControl]="mobile_number" id="mobile_number" type="number" required placeholder="Lead Passenger Mobile Number"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          
+          <ion-input [(ngModel)]="buyRailwayTicketData.email_address" [formControl]="email_address" id="email_address" type="number" required placeholder="Lead Passenger Email Address"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+          <ion-input [(ngModel)]="buyRailwayTicketData.narration" [formControl]="narration" id="narration" type="number" required placeholder="Narration"></ion-input>
+        </ion-item>
+        <ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+          <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+          <ion-input [(ngModel)]="buyRailwayTicketData.pin" [formControl]="pin" id="pin" type="number" required placeholder="Enter Your 4-digit Pin"></ion-input>
+        </ion-item>-->
+
+      </ion-list>
+      <!--<button full color="secondary" (click)="searchTrainTrips(buyRailwayTicketData)" ion-button round style="font-size:1.7rem !important; background-color: #00CC66 !important;" strong>Verify</button>-->
+    </form>
+  <!--</div>
+  </div>-->
+</ion-content>
+
+
+
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="searchTrainTrips(buyRailwayTicketData)">Find Trips</button>
+	</ion-toolbar>
+</ion-footer>

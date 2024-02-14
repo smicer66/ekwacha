@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-color: #fff !important">
+    <ion-title style="color: #000 !important; text-align: right; font-size: 1.5rem">
+		<span style="color: #000 !important; text-align: right; font-size: 1.5rem">{{step2title}}</span>
+	</ion-title>
+	<!--<ion-buttons start> <button (click)="openModal()" style="background-color: #EC2E24 !important"> <ion-icon name="arrow-back" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<div ion-row style="padding-right: 0px !important;">
+		<ion-list ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<ion-item *ngFor="let availableflight of availableflightlist; let i = index" ion-icon="contact" [style.background-color]="availableflight.bgColor">
+				<!--<ion-icon name="phone-jet" item-left></ion-icon>-->
+				<span style="font-size: 1.2em"><strong>#{{(i+1)}} - {{availableflight.flight_code}}</strong></span><br>
+				<span style="font-size: 1.4em"><strong>{{availableflight.source}} to {{availableflight.destination}}</strong></span><br>
+				<span style="font-size: 1.2em">{{availableflight.flight_start_time}}Hrs to {{availableflight.flight_end_time}}Hrs</span><br>
+				<span style="font-size: 1.6em" class="pull-left"><strong>K{{availableflight.amount}}</strong></span><br>
+				<span style="font-size: 1.2em" class="pull-right">
+					<!--<button ion-button (click)="goToSelectFlight(availableflight)" round>Select Flight</button>-->
+					<button style="align-self: flex-end; box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important" ion-button small (click)="goToSelectFlight(availableflight)" item-end >Select Flight</button>
+					<!--<a href="javascript:void(0);" class="btn btn-primary pull-right">Select Flight - K{{availableflight.amount}}</a>-->
+				</span>
+			</ion-item>
+		</ion-list>
+	</div>
+
+</ion-content>

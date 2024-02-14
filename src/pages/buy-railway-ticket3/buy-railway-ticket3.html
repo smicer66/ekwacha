@@ -1,0 +1,69 @@
+<!--
+  Generated template for the BillPaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Buy ZRL Tickets 3/3</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="">
+		<form [formGroup]="buyRailwayTicketForm3">
+			<ion-item padding-right>
+				<strong style="font-size: 2rem !important">Passenger Details</strong><br>
+				<span style="white-space: normal">What's the trips lead passengers details?</span>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="bookTrainData3.firstName" formControlName="firstName" id="firstName" type="text" required placeholder="First Name*"></ion-input>  
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="bookTrainData3.otherName" formControlName="otherName" id="otherName" type="text" placeholder="Other Name"></ion-input>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="bookTrainData3.lastName" formControlName="lastName" id="lastName" type="text" required placeholder="Last Name*"></ion-input>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="bookTrainData3.nationalId" formControlName="nationalId" id="nationalId" type="text" required placeholder="National Id"></ion-input>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="bookTrainData3.mobileNumber" formControlName="mobileNumber" id="mobileNumber" type="tel" required placeholder="Mobile Number*"></ion-input>
+				<button style="padding: 0px !important; background-color: #E2F5D6 !important; font-size: 1.0em !important; box-shadow: none !important; webkit-box-shadow: none !important; color: #000 !important" ion-button item-start icon-start small (click)="openMobileNumberModal()">
+					<ion-avatar item-start>
+						<img src="assets/imgs/country/zm.png">
+					</ion-avatar>
+					+260
+				</button>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="bookTrainData3.emailAddress" formControlName="emailAddress" id="emailAddress" type="text" required placeholder="Email Address"></ion-input>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Your Pin:</ion-label>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="bookTrainData3.pin1" formControlName="pin1" id="pin1" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="bookTrainData3.pin2" formControlName="pin2" id="pin2" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="bookTrainData3.pin3" formControlName="pin3" id="pin3" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="bookTrainData3.pin4" formControlName="pin4" id="pin4" type="tel" required placeholder="" maxLength="1"></ion-input>
+			</ion-item>
+		</form>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="purchaseTrainTrip(bookTrainData3)">Purchase Train Ticket(s)</button>
+	</ion-toolbar>
+</ion-footer>

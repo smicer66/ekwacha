@@ -1,0 +1,102 @@
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+<ion-menu class="ion-menu_1" type="overlay" [content]="mycontent">
+  <ion-content>
+		<ion-list ion-row style="margin:0px !important; padding-right: 0px !important; margin-right:0px !important;">
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('dashboard')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="cog" item-left></ion-icon>
+				Dashboard
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('mini-statement')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="clipboard" item-left></ion-icon>
+				Mini Statement
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('accounts')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="md-albums" item-left></ion-icon>
+				Accounts
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('funds-transfer')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="jet" item-left></ion-icon>
+				Funds Transfer
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('airtime-top-up')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="phone-portrait" item-left></ion-icon>
+				Airtime Top Up
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('bill-payments')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="card" item-left></ion-icon>
+				Bill Payments
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('newgroup')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="people" item-left></ion-icon>
+				New Group
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('groups')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="people" item-left></ion-icon>
+				My Groups
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('outstandingContributions')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="cash" item-left></ion-icon>
+				Outstanding Contributions
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('contributionsPaid')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="card" item-left></ion-icon>
+				Contributions Paid
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('loans')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="infinite" item-left></ion-icon>
+				My Loans
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('loans')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="pulse" item-left></ion-icon>
+				My Earnings
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==true" class="ion-item_1" (click)="openPage('transferToWallet')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="wallet" item-left></ion-icon>
+				Trasfer To My Wallet
+			</ion-item>
+			
+			<!--<ion-item class="ion-item_1" (click)="openPage('cheques-cards')">
+				<ion-icon name="card" item-left></ion-icon>
+				Cheques & Cards
+			</ion-item>
+			
+			<ion-item class="ion-item_1" (click)="openPage('deposits-withdrawals')">
+				<ion-icon name="cash" item-left></ion-icon>
+				Deposits & Withdrawals
+			</ion-item>
+			
+			<ion-item class="ion-item_1" (click)="openPage('account-officer')">
+				<ion-icon name="contact" item-left></ion-icon>
+				Account Officer
+			</ion-item>-->
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('profile-management')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="person" item-left></ion-icon>
+				Profile Management
+			</ion-item>
+			
+			<ion-item *ngIf="ekwachaActive==false" class="ion-item_1" (click)="openPage('faqs')" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="help-buoy" item-left></ion-icon>
+				FAQs
+			</ion-item>
+			
+			<ion-item class="ion-item_1" (click)="logout()" style="padding-top:15px !important; padding-bottom: 15px !important; border-bottom: 1px solid #dedede;">
+				<ion-icon name="help-buoy" item-left></ion-icon>
+				Log Out
+			</ion-item>
+		</ion-list>
+  </ion-content>
+</ion-menu>

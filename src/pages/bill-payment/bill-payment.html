@@ -1,0 +1,84 @@
+<!--
+  Generated template for the BillPaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.(click)="openModal()" 
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	<button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Bill Payments</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+	<div ion-row style="padding-right: 0px !important;">
+		<ion-list ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<!--<ion-item ion-icon="contact" (click)="goToMobileTopUp()">
+				<ion-icon name="phone-portrait" item-left></ion-icon>
+				Mobile Top Up
+			</ion-item>-->
+			
+			<ion-item (click)="goToCableTv()">
+				<ion-icon name="laptop" item-left></ion-icon>
+				Cable TV
+			</ion-item>
+			
+			<ion-item (click)="goToPayMerchant()">
+				<ion-icon name="person" item-left></ion-icon>
+				Pay Merchant
+			</ion-item>
+			
+			<!--<ion-item (click)="goToSchoolFees()">
+				<ion-icon name="school" item-left></ion-icon>
+				School Fees
+			</ion-item>
+			
+			<ion-item (click)="goToBookAFlight()">
+				<ion-icon name="jet" item-left></ion-icon>
+				Book A Flight
+			</ion-item>
+			
+			<ion-item (click)="goToBookABusTicket()">
+				<ion-icon name="bus" item-left></ion-icon>
+				Book A Bus Ticket
+			</ion-item>-->
+			
+			<ion-item (click)="goToBuyARailwayTicket()">
+				<ion-icon name="train" item-left></ion-icon>
+				Buy A Railway Ticket
+			</ion-item>
+			
+			<ion-item (click)="goToBuyInternetData()">
+				<ion-icon name="wifi" item-left></ion-icon>
+				Buy Internet Data
+			</ion-item>
+			
+			<ion-item (click)="goToUtilities()">
+				<ion-icon name="hammer" item-left></ion-icon>
+				Utilities
+			</ion-item>
+			
+			<ion-item class="ion-item_1" (click)="goToPaySchoolFees()">
+				<ion-icon name="school" item-left></ion-icon>
+				Pay School Fees
+			</ion-item>
+			
+			<ion-item class="ion-item_1" (click)="goToPayNimaPayment()">
+				<ion-icon name="school" item-left></ion-icon>
+				NIMA Payments
+			</ion-item>
+			
+			<ion-item class="ion-item_1" (click)="goToPayBetway()">
+				<ion-icon name="school" item-left></ion-icon>
+				Betway Payments
+			</ion-item>
+		</ion-list>
+	</div>
+
+</ion-content>

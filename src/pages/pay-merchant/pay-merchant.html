@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Pay A Merchant</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="">
+    <form [formGroup]="payMerchantForm">
+      <!--<div class="errormsg">
+        <div *ngIf="username.errors && username.touched">
+          <p>Username is required.</p>
+        </div>
+		
+      </div>-->
+		<ion-item padding-right>
+			<strong style="font-size: 2rem !important">Merchant Payments</strong><br>
+			<span style="white-space: normal">You can pay any of our merchants by asking for their merchant code. If you have an ORDER ID, provide the order id also</span>
+		</ion-item>
+		
+		
+		<ion-list>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important; padding-bottom: 0px !important;" [(ngModel)]="payMerchantData.merchant_code" [formControl]="merchant_code" id="merchant_code" type="text" required placeholder="Merchant Code"></ion-input>
+				<button style="align-self: flex-end; box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important" ion-button small (click)="verifyMerchant(payMerchantData.merchant_code)" item-end ><ion-icon name="checkmark"></ion-icon> &nbsp;Verify</button>
+			</ion-item>
+			<ion-item *ngIf="payMerchantData.isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="payMerchantData.transaction_code" [formControl]="transaction_code" id="transaction_code" type="text" required placeholder="Order No."></ion-input>
+			</ion-item>
+			<ion-item *ngIf="payMerchantData.isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="payMerchantData.amount" [formControl]="amount" id="amount" type="text" required placeholder="Amount To Pay"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="payMerchantData.isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Merchant Name:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{merchantName}}</ion-label>
+			</ion-item>
+			<ion-item *ngIf="payMerchantData.isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Merchant Mobile:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{merchantMobile}}</ion-label>
+			</ion-item>
+			<ion-item *ngIf="payMerchantData.isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Merchant Address:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{merchantAddress}}</ion-label>
+			</ion-item>
+			<ion-item *ngIf="payMerchantData.isVerified" padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Transaction ID:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{merchantTransactionId}}</ion-label>
+			</ion-item>
+			<!--<ion-item padding-right>
+			  <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+			  <ion-input [(ngModel)]="payMerchantData.pin" [formControl]="pin" id="pin" type="number" required placeholder="Enter Your 4-digit Pin"></ion-input>
+			</ion-item>-->
+
+		</ion-list>
+    </form>
+</ion-content>
+
+
+<ion-footer no-shadow *ngIf="payMerchantData.isVerified">
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="initiateMerchantPayment(payMerchantData)">Pay Merchant</button>
+	</ion-toolbar>
+</ion-footer>

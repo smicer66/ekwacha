@@ -1,0 +1,168 @@
+<!--<ion-header>
+  <ion-navbar color="primary" style="background-color: #EC2E24 !important">
+	<button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+    <ion-title style="color: #fff !important;">Funds Transfer To Other Banks</ion-title>
+	<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-img">
+  <div class="main-content">
+
+    <div padding  style="width: 100%;">
+    <form [formGroup]="ftToOtherBanksForm">
+		<ion-list>
+			<ion-item padding-right>
+			  <ion-label><ion-icon name="contact"></ion-icon>Account</ion-label>
+			  <ion-select [(ngModel)]="ftToOtherBanksFormData.account" [formControl]="account" id="account">
+					<ion-option *ngFor="let account_ of accountlist" value="{{account_.id}}">{{account_.account_number}}</ion-option>
+			  </ion-select>
+			</ion-item><div style="font-size:20px !important;">&nbsp;</div>
+			<ion-item padding-right>
+			  <ion-label><ion-icon name="locate"></ion-icon> Receipient Bank</ion-label>
+			  <ion-select [(ngModel)]="ftToOtherBanksFormData.receipient_bank" [formControl]="receipient_bank" id="receipient_bank">
+					<ion-option *ngFor="let bank of banklist" value="{{bank.id}}">{{bank.bank_name}}</ion-option>
+			  </ion-select>
+			</ion-item><div style="font-size:20px !important;">&nbsp;</div>
+			<ion-item padding-right>
+			  <ion-label><ion-icon name="locate"></ion-icon> Receipient Account</ion-label>
+			  <ion-input [(ngModel)]="ftToOtherBanksFormData.receipient_account" [formControl]="receipient_account" id="receipient_account" type="text" required placeholder=""></ion-input>
+			</ion-item><div style="font-size:20px !important;">&nbsp;</div>
+			<ion-item padding-right>
+			  <ion-label><ion-icon name="locate"></ion-icon> Amount</ion-label>
+			  <ion-input [(ngModel)]="ftToOtherBanksFormData.amount" [formControl]="amount" id="amount" type="text" required placeholder=""></ion-input>
+			</ion-item><div style="font-size:20px !important;">&nbsp;</div>
+			<ion-item padding-right>
+			  <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+			  <ion-input [(ngModel)]="ftToOtherBanksFormData.narration" [formControl]="narration" id="narration" type="text" required placeholder="Narration"></ion-input>
+			</ion-item><div style="font-size:20px !important;">&nbsp;</div>
+			<ion-item padding-right>
+			  <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+			  <ion-input [(ngModel)]="ftToOtherBanksFormData.pin" [formControl]="pin" id="pin" type="number" required placeholder="Enter Your 4-digit Pin"></ion-input>
+			</ion-item><div style="font-size:20px !important;">&nbsp;</div>
+		</ion-list>
+      <button full color="secondary" (click)="doFundsTransfer(ftToOtherBanksFormData)" ion-button round style="font-size:2.0rem !important; background-color: #00CC66 !important;" strong>Transfer Funds</button>
+    </form>
+  </div>
+  </div>
+</ion-content>
+
+
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Funds Transfer</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="">
+  <!--<div class="main-content">
+
+    <div padding  style="width: 100%;">-->
+    <form [formGroup]="ftToOtherBanksForm">
+		<ion-item padding-right>
+			<strong style="font-size: 2rem !important">Funds Transfer</strong><br>
+			<span style="white-space: normal">Transfer funds from your wallet to a bank account or another wallet</span>
+		</ion-item>
+		<!--<div class="errormsg">
+			<div *ngIf="username.errors && username.touched"><p>Username is required.</p></div>
+		</div>
+		<ion-list>-->
+			<div class="formelement">
+				<fieldset>
+					<legend>Send To</legend>
+					<ion-select col-12  value="Select Your Destination Type" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="ftToOtherBanksFormData.destinationType" formControlName="destinationType" placeholder="-Destination Type-" id="destinationType" (ionChange)="onDestinationTypeChange($event)">
+					  <ion-option value="Transfer To A Bank">A Bank</ion-option>
+					  <ion-option value="Transfer To A Wallet">A Wallet</ion-option>
+					</ion-select>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="ftToOtherBanksFormData.destinationType=='Transfer To A Bank'" class="formelement">
+				<fieldset>
+					<legend>Receipient Type</legend>
+					<ion-select col-12  placeholder="Select One" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="ftToOtherBanksFormData.toWho" formControlName="toWho" id="toWho" (ionChange)="onTransferToWhoChange($event)">
+					  <ion-option value="Self">My Bank Account</ion-option>
+					  <ion-option value="Outside">Another Bank Account</ion-option>
+					</ion-select>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="ftToOtherBanksFormData.destinationType=='Transfer To A Bank' && ftToOtherBanksFormData.toWho=='Self'" class="formelement">
+				<fieldset>
+					<legend>Send To</legend>
+					<ion-select col-12  placeholder="Select Account" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="ftToOtherBanksFormData.destinationBankAccount" formControlName="destinationBankAccount" id="destinationBankAccount">
+						<ion-option value="{{item.customerBankAccountId}}###{{item.accountNumber}}###{{item.bankId}}###{{item.customerAccountId}}" *ngFor="let item of toSelfAccountList">{{item.accountNumber}} - {{item.bankName}}</ion-option>
+					</ion-select>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="ftToOtherBanksFormData.destinationType=='Transfer To A Bank' && ftToOtherBanksFormData.toWho=='Outside'" class="formelement">
+				<fieldset>
+					<legend>Send To</legend>
+					<ion-select col-12  value="Select Your Bank" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="ftToOtherBanksFormData.destinationBank" formControlName="destinationBank" id="destinationBank">
+						<ion-option value="{{item.id}}" *ngFor="let item of bankList">{{item.bankName}}</ion-option>
+					</ion-select>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="ftToOtherBanksFormData.destinationType=='Transfer To A Bank' && ftToOtherBanksFormData.toWho=='Outside'" class="formelement">
+				<fieldset>
+					<legend>Receipient Account No</legend>
+					<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important;" [(ngModel)]="ftToOtherBanksFormData.recAccountNo" formControlName="recAccountNo" id="recAccountNo" type="tel" required placeholder=""></ion-input>
+					<button style="box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important; padding: 0px !important" ion-button small color="secondary" small (click)="verifyAccountNo(ftToOtherBanksFormData.recAccountNo)" item-end *ngIf="displayAmount==false">
+					<ion-label style="padding-left: 15px !important; color: #000" *ngIf="displayAmount==true">ftToOtherBanksFormData.recAccountNo</ion-label>
+					<ion-icon name="checkmark" *ngIf="displayAmount==true"></ion-icon> Verify</button>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="ftToOtherBanksFormData.destinationType=='Transfer To A Wallet'" class="formelement">
+				<fieldset>
+					<legend>Receipient Wallet Number</legend>
+					<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important;" [(ngModel)]="ftToOtherBanksFormData.recWalletNo" formControlName="recWalletNo" id="recWalletNo" type="tel" required placeholder=""></ion-input>
+					<button style="box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important; padding: 0px !important" ion-button small color="secondary" small (click)="verifyWalletNo(ftToOtherBanksFormData.recWalletNo)" item-end ><ion-icon name="checkmark"></ion-icon> Verify</button>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="displayAmount==true" class="formelement">
+				<fieldset>
+					<legend>Amount</legend>
+					<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important;" [(ngModel)]="ftToOtherBanksFormData.amount" formControlName="amount" id="amount" type="tel" required placeholder=""></ion-input>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="displayAmount==true" class="formelement">
+				<fieldset>
+					<legend>Narration</legend>
+					<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important;" [(ngModel)]="ftToOtherBanksFormData.narration" formControlName="narration" id="narration" type="text" required placeholder="Narration"></ion-input>
+				</fieldset>
+			</div>
+			
+			<div *ngIf="displayAmount==true" class="formelement">
+				<fieldset>
+					<legend>Your Pin</legend>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="ftToOtherBanksFormData.pin1" formControlName="pin1" id="pin1" type="tel" required placeholder="" maxLength="1"></ion-input>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="ftToOtherBanksFormData.pin2" formControlName="pin2" id="pin2" type="tel" required placeholder="" maxLength="1"></ion-input>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="ftToOtherBanksFormData.pin3" formControlName="pin3" id="pin3" type="tel" required placeholder="" maxLength="1"></ion-input>
+					<ion-input col-3 style="float: left !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="ftToOtherBanksFormData.pin4" formControlName="pin4" id="pin4" type="tel" required placeholder="" maxLength="1"></ion-input>
+				</fieldset>
+			</div>
+		<!--</ion-list>
+      <button full color="secondary" (click)="doFundsTransfer(ftToOtherBanksFormData)" ion-button round style="font-size:2.0rem !important; background-color: #00CC66 !important;" strong>Transfer Funds</button>-->
+    </form>
+  <!--</div>
+  </div>-->
+</ion-content>
+
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="doFundsTransfer(ftToOtherBanksFormData)">Next</button>
+	</ion-toolbar>
+</ion-footer>

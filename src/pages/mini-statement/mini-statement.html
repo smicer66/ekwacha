@@ -1,0 +1,44 @@
+<!--
+  Generated template for the BillPaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Mini Statement</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+		<ion-list ion-row style="margin:0px !important; padding-right: 0px !important; margin-right:0px !important;">
+			<ion-item style="padding: 0px !important; border-bottom: 2px solid #3333FF">
+				<strong style="font-size: 2rem !important">Mini Statement</strong><br>
+				<span style="white-space: normal; padding-left: 0px !important">Your last five transactions are displayed below in addition to your current and available balance</span>
+				<div ion-col col-12 style="clear:both !important; padding: 0px !important; text-align: right">
+					<button ion-button round small (click)="payABill()" style="-webkit-box-shadow: none !important; box-shadow: none !important; font-size:12px !important; text-transform: none !Important; padding-right:10px !important; padding-left:10px !important"><ion-icon name="card" item-left></ion-icon>&nbsp;&nbsp;Pay A Bill</button>
+				</div>
+			</ion-item>
+			<ion-item [style.background-color]="transaction.bgColor" class="ion-item_1" *ngFor="let transaction of transactionslist" style="padding: 0px !important; border-bottom: 2px solid #4B8D23;">
+				<div col-2 style="float: left !important; font-size: 2.0em !important;">
+					<ion-icon name="{{transaction.iconName}}" item-left></ion-icon>
+				</div>
+				<div col-10 style="float: left !important; font-size: 1.3em !important;">
+					<strong style="font-size: 1.4em !important;">K{{transaction.amount}} </strong><br>
+					<strong>{{transaction.serviceType}}</strong><br>Ref: {{transaction.orderRef}}<br>
+					{{transaction.transactionDate}}<br>
+					{{transaction.status}}<br>
+				</div>
+			</ion-item>
+			
+			
+		</ion-list>
+
+</ion-content>

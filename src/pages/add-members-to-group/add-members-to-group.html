@@ -1,0 +1,61 @@
+<!--
+  Generated template for the AddMembersToGroupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="viewCtrl.dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">{{title}}</span>
+	</ion-title>
+	<!--<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+		<form [formGroup]="addMemberToGroupForm">
+			<ion-item padding-right>
+				<strong style="font-size: 2rem !important">Invite People to Your Group</strong><br>
+				<span style="white-space: normal">Provide a mobile number before adding the person to the group</span>
+			</ion-item>
+			<ion-item padding-right *ngIf="groupTitle!=undefined && groupTitle!=null">
+				<span style="white-space: normal"><strong>Group:</strong> {{groupTitle}}</span>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; padding: 3px !Important">
+				<ion-input style="font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="addMemberToGroupData.memberPhoneNumber" formControlName="memberPhoneNumber" id="memberPhoneNumber" type="tel" required placeholder="Type A Phone Number"></ion-input>
+				<button style="align-self: flex-end; box-shadow: none !important; -webkit-box-shadow: none !important; font-size: 0.9em !important" ion-button color="secondary" small (click)="verifyUser(addMemberToGroupData.memberPhoneNumber)" item-end >Verify</button>
+			</ion-item>
+			
+			<ion-item padding-right style="padding: 3px !Important" *ngIf="membersVerified!=undefined && membersVerified.length > 0">
+				<strong style="font-size: 2rem !important; text-decoration: underline">Members Added</strong><br>
+			</ion-item>
+			
+			<ion-item [style.background-color]="member.bgColor" padding-right style="padding: 3px !Important" *ngFor="let member of membersVerified">
+				<div col-2 style="float: left !important; font-size: 1.0em !important;">
+					<img src="assets/imgs/header_bg.jpg">
+				</div>
+				<div col-8 style="float: left !important; font-size: 1.0em !important;">
+					<span>{{member.firstName}} {{member.lastName}} ({{member.mobileNumber}})</span>
+				</div>
+				<div col-2 style="float: left !important; font-size: 1.0em !important; text-align: right !important">
+					<button ion-button icon-only (click)="removeMember(member)" style="background-color: transparent !important; -webkit-box-shadow: none !important; box-shadow: none !important; ">
+						<ion-icon name="trash" style="color:#ff0000 !important; background-color: transparent !important"></ion-icon>
+					</button>
+				</div>
+			</ion-item>
+		</form>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="addMembersToGroup(addMemberToGroupData)">Next</button>
+	</ion-toolbar>
+</ion-footer>

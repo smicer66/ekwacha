@@ -1,0 +1,68 @@
+<!--
+  Generated template for the AddBankAccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<!--<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>-->
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Add Bank Account</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="tutorial-page">
+		<!--<ion-toolbar>
+			<ion-buttons end>
+			  <button ion-button color="primary">Skip</button>
+			</ion-buttons>
+		</ion-toolbar>-->
+		<form [formGroup]="addBankAccountPageForm">
+			<div class="headertitle">
+				<strong style="font-size: 2rem !important">Bank Account Details</strong><br>
+				<span style="white-space: normal">Provide details of your bank account to add your bank account to your profile.</span>
+			</div>
+			
+			<div class="formelement">
+				<fieldset>
+					<legend>Your Bank</legend>
+					<!--<select value="Select Your Bank" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="addBankAccountData.bank" formControlName="bank" id="bank">
+					  <option value="{{item.id}}" *ngFor="let item of bankList">{{item.bankName}}</option>
+					</select>-->
+					<ion-select col-12  placeholder="Select Your Bank" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="addBankAccountData.bank" formControlName="bank" id="bank">
+					  <ion-option value="{{item.id}}" *ngFor="let item of bankList">{{item.bankName}}</ion-option>
+					</ion-select>
+				</fieldset>
+			</div>
+			
+			<div class="formelement">
+				<fieldset>
+					<legend>Account Number</legend>
+					<ion-input class="ioninput" [(ngModel)]="addBankAccountData.accountNumber" formControlName="accountNumber" id="accountNumber" type="tel" required placeholder="Your Bank Account Number"></ion-input>
+				</fieldset>
+			</div>
+			
+			<div class="formelement">
+				<fieldset>
+					<legend>Account Name</legend>
+					<ion-input class="ioninput" [(ngModel)]="addBankAccountData.accountName" formControlName="accountName" id="accountName" type="text" placeholder="Your Bank Account Name"></ion-input>
+				</fieldset>
+			</div>
+		</form>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="doAddBankAccount(addBankAccountData)">Next</button>
+	</ion-toolbar>
+</ion-footer>
+
+

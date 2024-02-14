@@ -1,0 +1,45 @@
+<!--
+  Generated template for the BillPaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Funds Transfer</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<div ion-row style="padding-right: 0px !important;">
+		<ion-list ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<ion-item ion-icon="contact" (click)="transferWithinBank()">
+				<ion-icon name="plane" item-left></ion-icon>
+				Transfer From Bank Accounts
+			</ion-item>
+			
+			<ion-item (click)="transferToOtherBank()">
+				<ion-icon name="jet" item-left></ion-icon>
+				Transfer From Wallet
+			</ion-item>
+			
+			<ion-item (click)="mobileMoneyTransfer()">
+				<ion-icon ios="ios-globe" md="md-globe" item-left></ion-icon>
+				Mobile Money Transfer
+			</ion-item>
+			
+			<!--<ion-item (click)="transferToSubsidiary()">
+				<ion-icon name="plane" item-left></ion-icon>
+				Transfer to Subsidiary
+			</ion-item>-->
+		</ion-list>
+	</div>
+
+</ion-content>

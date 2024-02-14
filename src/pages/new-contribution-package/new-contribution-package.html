@@ -1,0 +1,133 @@
+<!--
+  Generated template for the NewContributionPackagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="viewCtrl.dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">{{title}}</span>
+	</ion-title>
+	<!--<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+		<form [formGroup]="newContributionPackageForm">
+			<ion-item padding-right>
+				<strong style="font-size: 2rem !important">Your Package's Details</strong><br>
+				<span style="white-space: normal">Provide your package's name and details. All members of your group will be required to make the contributions you setup here from their OneBank wallet</span>
+			</ion-item>
+			<ion-item padding-right *ngIf="groupTitle!=undefined && groupTitle!=null">
+				<span style="white-space: normal"><strong>Group:</strong> {{groupTitle}}</span>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.packageName" formControlName="packageName" id="packageName" type="text" required placeholder="Package Name"></ion-input>  
+			</ion-item>
+			
+			<ion-item padding-right  style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.regularPeriod" formControlName="regularPeriod" id="regularPeriod" type="text" placeholder="Contribute Every"></ion-input>
+			  <ion-select [(ngModel)]="newContributionPackageData.paymentInterval" placeholder="--Period Type--" [formControl]="paymentInterval" id="paymentInterval">
+					<ion-option value="DAY">Day(s)</ion-option>
+					<ion-option value="WEEK">Week(s)</ion-option>
+					<ion-option value="MONTH">Month(s)</ion-option>
+					<ion-option value="YEAR">Year(s)</ion-option>
+			  </ion-select>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.contributionCount" formControlName="contributionCount" id="contributionCount" type="text" required placeholder="Number of Contributions"></ion-input>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.packageAmount" formControlName="packageAmount" id="packageAmount" type="text" placeholder="How much members pay regularly"></ion-input>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.penaltyAmount" formControlName="penaltyAmount" id="penaltyAmount" type="tel" placeholder="Penalty For Failing to Pay"></ion-input>
+			  <ion-select [(ngModel)]="newContributionPackageData.penaltyType" placeholder="--Penalty Type--" [formControl]="penaltyType" id="penaltyType">
+					<ion-option value="FLAT_FEE">Kwacha</ion-option>
+					<ion-option value="PERCENTAGE_OF_AMOUNT">Percent of Amount</ion-option>
+			  </ion-select>
+			</ion-item>
+  
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-textarea style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" rows="3" cols="20" placeholder="Tell Us About This Contribution Package" required [(ngModel)]="newContributionPackageData.aboutPackage" formControlName="aboutPackage" id="aboutPackage"></ion-textarea>
+			</ion-item>
+			
+			
+			<ion-item padding-right>
+				<strong style="font-size: 2rem !important">Loan Terms</strong><br>
+				<span style="white-space: normal">Specify the terms of loans issuable on this contribution package.</span>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.minContributions" formControlName="minContributions" id="minContributions" type="tel" required placeholder="Minimum payments before people apply for loan"></ion-input>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.minLoanAmount" formControlName="minLoanAmount" id="minLoanAmount" type="tel" required placeholder="Minimum Loan Amount"></ion-input>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.maxLoanAmount" formControlName="maxLoanAmount" id="maxLoanAmount" type="tel" required placeholder="Maximum Loan Amount"></ion-input>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-label style="padding-left: 15px !important;">Repayment Period Type</ion-label>
+				<ion-select [(ngModel)]="newContributionPackageData.repaymentPeriodType" placeholder="--Select One--" [formControl]="repaymentPeriodType" id="repaymentPeriodType">
+					<ion-option value="DAY">Per Day</ion-option>
+					<ion-option value="WEEK">Per Week</ion-option>
+					<ion-option value="MONTH">Per Month</ion-option>
+					<ion-option value="YEAR">Per Year</ion-option>
+			  </ion-select>
+			</ion-item>
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.minLoanPeriod" formControlName="minLoanPeriod" id="minLoanPeriod" type="tel" required placeholder="Minimum Loan Repayment Period"></ion-input>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.maxLoanPeriod" formControlName="maxLoanPeriod" id="maxLoanPeriod" type="tel" required placeholder="Maximum Loan Repayment Period"></ion-input>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.interestRate" formControlName="interestRate" id="interestRate" type="tel" required placeholder="Interest Rate"></ion-input>
+				<ion-select [(ngModel)]="newContributionPackageData.tenorType" placeholder="--Per--" [formControl]="tenorType" id="tenorType">
+					<ion-option value="DAY">Per Day</ion-option>
+					<ion-option value="WEEK">Per Week</ion-option>
+					<ion-option value="MONTH">Per Month</ion-option>
+					<ion-option value="YEAR">Per Year</ion-option>
+			  </ion-select>
+			</ion-item>
+			
+			
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="newContributionPackageData.penalty" formControlName="penalty" id="penalty" type="tel" required placeholder="Loan Penalty(%)"></ion-input>
+				<ion-select [(ngModel)]="newContributionPackageData.loanPenaltyType" placeholder="--Penalty Type--" [formControl]="loanPenaltyType" id="loanPenaltyType">
+					<ion-option value="FLAT_FEE">Kwacha</ion-option>
+					<ion-option value="PERCENTAGE_OF_AMOUNT">Percent of Amount</ion-option>
+				</ion-select>
+			</ion-item>
+		</form>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="doGroupCreateContributionPackage(newContributionPackageData)">Save Package</button>
+	</ion-toolbar>
+</ion-footer>

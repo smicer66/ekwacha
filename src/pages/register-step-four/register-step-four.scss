@@ -1,0 +1,33 @@
+page-register-step-four {
+	.text-input{
+		background-color: #fff !important;
+		padding: 7px !important;
+		text-align: center;
+		font-size: 1.5em
+	}
+	
+	ion-label{
+		border: 0px !important;
+	}
+	
+	.item-md.item-block .item-inner
+	{
+		border: 0px solid !important;
+	}
+	
+	
+	
+	.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+		-webkit-box-shadow: none !important;
+		box-shadow: none !important;
+	}
+	
+	.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+		-webkit-box-shadow: none !important;
+		box-shadow: none !important;
+	}
+	
+	.item-md ion-avatar ion-img, .item-md ion-avatar img {
+		border-radius: 10%
+	}
+}

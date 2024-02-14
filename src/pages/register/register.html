@@ -1,0 +1,98 @@
+<!--
+  Generated template for the IntroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Register - 1/3</span>
+	</ion-title>
+	<!--<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+		<ion-toolbar>
+			<ion-buttons end>
+			  <button ion-button color="primary">Skip</button>
+			</ion-buttons>
+		</ion-toolbar>
+		<form [formGroup]="authForm">
+			<ion-item padding-right>
+				<strong style="font-size: 2rem !important">Your Full Names</strong><br>
+				<span style="white-space: normal">Provide your first, other and last names. We will use these names to identify you.</span>
+			</ion-item>
+			<ion-item padding-right style="padding: 3px !Important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="regData.firstName" formControlName="firstName" id="firstName" type="text" required placeholder="First Name*"></ion-input>  
+			</ion-item>
+			
+			<ion-item padding-right style="padding: 3px !Important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="regData.otherName" formControlName="otherName" id="otherName" type="text" placeholder="Other Name"></ion-input>
+			</ion-item>
+			
+			<ion-item padding-right style="padding: 3px !Important">
+			  <ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="regData.lastName" formControlName="lastName" id="lastName" type="text" required placeholder="Last Name*"></ion-input>
+			</ion-item>
+		</form>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="doRegisterStepOne(regData)">Next</button>
+	</ion-toolbar>
+</ion-footer>
+
+
+
+
+
+<!--
+<ion-header>
+  <ion-navbar color="primary" style="background-color: #EC2E24 !important">
+    <ion-title style="color: #fff !important;">Register 1/3</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-img">
+  <div class="main-content">
+
+    <div padding  style="width: 100%;">
+    <form [formGroup]="authForm">
+      <ion-list>
+        <ion-item padding-right>
+          <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+          <ion-input [(ngModel)]="regData.account_number" [formControl]="account_number" id="account_number" type="number" required placeholder="Enter Your Account Number"></ion-input>
+        </ion-item><div style="font-size:20px !important;">&nbsp;</div>
+
+      </ion-list>
+      <button full color="secondary" (click)="doRegisterStepOne(regData)" ion-button round style="font-size:1.7rem !important; background-color: #00CC66 !important;" strong>Continue</button>
+		
+		<div padding text-center class="form-bottom-text">
+		  <label style="font-size:1.7rem !important"> An authentication code will be sent to you by E-Mail and SMS shortly</label>
+		</div>
+		
+		<div style="border-bottom:2px solid #fff; padding:10px;" ion-row>&nbsp;</div>
+		
+		<div padding text-center class="form-bottom-text">
+		  <label style="font-size:1.7rem !important"> Have a registration code?</label>
+		</div>
+		<button full color="secondary" (click)="doRegister(regData)" ion-button round style="font-size:1.7rem !important; background-color: #2B4170 !important;" strong>Enter Registration Code</button>
+		
+		
+		<div style="border-bottom:2px solid #fff; padding:20px;" ion-row>&nbsp;</div>
+		
+		<div padding text-center class="form-bottom-text">
+		  <label style="font-size:1.7rem !important"> Activate via Bank Card?</label>
+		</div>
+		<button full color="secondary" (click)="doRegister(regData)" ion-button round style="font-size:1.7rem !important; background-color: #2B4170 !important;" strong>Activate Via Card</button>
+    </form>
+  </div>
+  </div>
+</ion-content>-->

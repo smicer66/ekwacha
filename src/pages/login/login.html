@@ -1,0 +1,65 @@
+<ion-content class="">
+
+	<div class="main-content">
+		<ion-grid style="padding: 0px !important">
+			<div ion-row justify-content-center style="padding-bottom:20px !important; padding-top:120px !important">
+			  <div style="text-align: center" col-12><img src="assets/imgs/abc_Logo.png"></div>
+			  <div style="text-align: center; font-size: 1.6em; font-weight: bold" col-12>Welcome!</div>
+			  <div style="text-align: center; font-size: 1.3em;" col-12>What's Your Mobile Number</div>
+			</div>
+			<div ion-row justify-content-center style="padding-top: 20px !important;padding-left:  0px !important; padding-right: 0px !important;">
+				<form [formGroup]="authForm" (ngSubmit)="userLogin(loginData)" col-12 justify-content-center style="padding-left: 0px !important; padding-right: 0px !important;">
+					
+					<!--<div ion-row col-12 style="padding-left: 0px !important; padding-right: 0px !important;">
+						<ion-list col-12>
+						  <ion-item *ngIf="!validatedUsername" padding-right col-12 style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; border-bottom: 3px #fff solid !important">
+							<ion-label>
+							  <ion-icon ios="ios-phone" md="md-call"></ion-icon>
+							</ion-label>
+							<ion-input [(ngModel)]="loginData.username" [formControl]="username" id="username" type="text" required placeholder="Mobile Number"></ion-input>
+						  </ion-item>
+						</ion-list>
+					</div>-->
+					
+					<div ion-row col-12 style="background-color: #E2F5D6 !important; padding-top: 0px !important; padding-bottom: 0px !important">
+						<div ion-col col-4 style="background-color: #E2F5D6 !important; ">
+							<ion-avatar item-start style="padding: 14px !Important; background-color: #E2F5D6 !important; ">
+								<img src="assets/imgs/country/{{countryFlag}}" style="float: left !important;">
+								<a href="javascript:void(0);" (click)="openMobileNumberModal()"  style="float: right !important;  font-size: 1.6em !important; color: #046FB3 !important; text-decoration: underline; font-weight: bold !important">{{countryCode}}</a>
+							</ion-avatar>
+						</div>
+						<div ion-col col-8>
+							<ion-input value="967307151" style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="loginData.username" [formControl]="username" id="username" type="tel" required placeholder="Mobile Number"></ion-input>
+						</div>
+					</div>
+					<div style="font-size:4px !important;">&nbsp;</div>
+					<div ion-row col-12 style="background-color: #E2F5D6 !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important;">
+						<div ion-col col-12 style="padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important;">
+							<button type="submit" ion-button full  color="secondary" [disabled]="!authForm.valid"  (click)="login(loginData)">Verify Me</button>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			
+			<div ion-row justify-content-center style="padding: 0px !important; padding-top:30px !important">
+				<div ion-col col-12 style="padding: 0px !important">
+					<div col-12 style="" ><!--background-color: #28385A;-->
+						<div padding text-center class="form-bottom-text" style="font-size: 1.1em !important"><a href="javascript:void(0);" (click)="moveToRegister()"  style="font-size: 1.1em !important; color: #98A361 !important; text-decoration: underline">Register</a></div>
+					</div>
+				</div>
+			</div>
+		</ion-grid>
+	</div>
+</ion-content>
+
+<!--<ion-footer>
+	<ion-item>
+		<ion-label>Zambia</ion-label>
+		<ion-select [(ngModel)]="gender">
+			<ion-option value="f"></ion-option>
+			<ion-option value="m">Zambia</ion-option>
+			<ion-option value="m">Mozambique</ion-option>
+		</ion-select>
+	</ion-item>
+</ion-footer>-->

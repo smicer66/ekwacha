@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	
+    <button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+	<ion-title style="color: #fff !important;">
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Loan Repayment</span>
+	</ion-title>
+	<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>
+	<!--<ion-buttons end> <button (click)="logout()" style="background-color: #EC2E24 !important"> <ion-icon name="lock" style="color:#fff !important"></ion-icon> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="">
+    <form [formGroup]="makeLoanRepaymentForm">
+      <!--<div class="errormsg">
+        <div *ngIf="username.errors && username.touched">
+          <p>Username is required.</p>
+        </div>
+		
+      </div>-->
+		<ion-item padding-right>
+			<strong style="font-size: 2rem !important">Repay Loan</strong><br>
+			<span style="white-space: normal">You can pay any amount to cover your the expected amount and as many subsequent repayments as possible. Failure to make scheduled repayments on time may attract penalties</span>
+		</ion-item>
+		
+		
+		<ion-list>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Repayment #:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{repaymentNumber}}</ion-label>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Outstanding Loan Balance:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{outstandingBalance}}</ion-label>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Amount Due:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{amountToPay}}</ion-label>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Date Due:</ion-label>
+				<ion-label style="padding-left: 15px !important; color: #000" text-right>{{dueDate}}</ion-label>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Amount To Pay(K):</ion-label>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 7px !Important" [(ngModel)]="makeLoanRepaymentData.amount" [formControl]="amount" id="amount" type="text" required placeholder="Amount To Pay"></ion-input>
+			</ion-item>
+			<ion-item padding-right style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 10px !Important; padding-top: 0px !Important; padding-bottom: 0px !Important; border-bottom: 3px #fff solid !important;">
+				<ion-label style="padding-left: 15px !important; color: #000">Your Pin:</ion-label>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="makeLoanRepaymentData.pin1" formControlName="pin1" id="pin1" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="makeLoanRepaymentData.pin2" formControlName="pin2" id="pin2" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="makeLoanRepaymentData.pin3" formControlName="pin3" id="pin3" type="tel" required placeholder="" maxLength="1"></ion-input>
+				<ion-input style="background-color: #E2F5D6 !important; font-size: 1.8rem !important; padding: 1px !Important" [(ngModel)]="makeLoanRepaymentData.pin4" formControlName="pin4" id="pin4" type="tel" required placeholder="" maxLength="1"></ion-input>
+			</ion-item>
+
+		</ion-list>
+    </form>
+</ion-content>
+
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="secondary" large (click)="makeRepayment(expectedPayment)">Make Repayment</button>
+	</ion-toolbar>
+</ion-footer>

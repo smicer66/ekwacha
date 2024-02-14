@@ -1,0 +1,113 @@
+<!--
+  Generated template for the BillPaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary" style="background-image: url(assets/imgs/header_bg.jpg) !important; background-repeat: no-repeat !important;">
+	<button ion-button menuToggle><ion-icon name="menu" style="color:#fff !important"></ion-icon></button>
+    <ion-title style="color: #fff !important; text-align: right; font-size: 1.5rem">
+		<ion-buttons style="float: left !important">
+			<button ion-button icon-only (click)="viewCtrl.dismiss()" style="background-color: transparent !important">
+				<ion-icon name="arrow-back" style="color:#fff !important"></ion-icon>
+			</button>
+		</ion-buttons>
+		<span style="color: #fff !important; text-align: right; font-size: 1.5rem">Loan Repayment Schedule</span>
+	</ion-title>
+	<!--<ion-buttons start> <button style="background-color: transparent !important"> <img src="assets/imgs/icon_user.png" style="height: 32px !important; background-color: transparent !important"> </button> </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="tutorial-page">
+	<div style="padding: 0px !important">
+		<ion-segment [(ngModel)]="pet" (ionChange)="onSegmentSwitch()">
+			<ion-segment-button value="repaymentSchedule" >
+				Repayment Schedule
+			</ion-segment-button>
+			<ion-segment-button value="repaymentsMade">
+				Your Payments
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+
+	<div [ngSwitch]="pet">
+		<ion-list *ngSwitchCase="'repaymentSchedule'" ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<ion-item padding-right>
+				<strong style="font-size: 1.5em !important">Expected Repayments</strong><br>
+				<span style="white-space: normal; font-size: 1.2em !important">Your list of expected loan repayments for the loan below.</span>
+			</ion-item>
+			<ion-item padding-right>
+				<strong style="font-size: 1.2em !important">Loan Details</strong><br>
+				<div style="font-size: 0.6em !important; font-size: 0.9em !important;"><strong>Group:</strong> {{groupName}}</div>	
+				<div style="font-size: 0.6em !important; font-size: 0.9em !important;"><strong>Loan Number:</strong> {{loanNo}}</div>	
+				<div style="clear:both; float: left !important; font-size: 0.9em !important;"><strong>Principal:</strong> K{{formatNumber(principal, 2)}}</div>
+				<div style="float: right !important; font-size: 0.9em !important;"><strong>Interest Rate:</strong> {{interest}}</div>
+				<div style="clear:both; float: left !important; font-size: 0.9em !important;"><strong>Loan Period:</strong> {{period}}</div>
+				<div style="float: right !important; font-size: 0.9em !important;"><strong>Penalty Applicable:</strong> {{formatNumber(penalty, 2)}}</div>
+			</ion-item>
+			<ion-item *ngFor="let expectedPayment of expectedRepayments; let i4=index" [style.background-color]="expectedPayment.bgColor" style="padding: 0px !important; border-bottom: 2px solid #4B8D23;">
+				<div>
+					<div col-2 style="float: left !important; font-size: 1.3em !important;">
+						<div [style.background-color]="expectedPayment.iconBgColor" style="text-align: center; font-size: 1.6em !important; padding-top: 5px !important; padding-bottom: 5px !Important">
+							<strong style="color: #fff !important;">{{expectedPayment.iconTxt}}</strong>
+						</div>
+					</div>
+					<div col-10 style="float: left !important; font-size: 1.3em !important;">
+						<div col-7 style="float: left !important; padding-left: 0px !important; font-size: 1.0em !important;"><strong>K{{formatNumber(expectedPayment.amount, 2)}}</strong></div>
+						<div col-5 style="float: right !important;" *ngIf="expectedPayment.canPay==1">
+							<div style="text-align: center !important; font-size: 0.6em !important; border: 1px solid #8da19e; border-radius:5px; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-bottom: 5px; background-color: #37df31 !important; color: #fff !important" (click)="makePayment(expectedPayment)">Repay</div>
+						</div>
+							
+						
+						<div style="clear:both; float: left !important; font-size: 0.6em !important;"><strong>Due Date:</strong> {{expectedPayment.expectedPaymentDate}}</div>
+						<div style="float: right !important; font-size: 0.6em !important;"><strong>Principal:</strong> K{{formatNumber(expectedPayment.principal, 2)}}</div>
+						<div style="clear: both !important; float: left !important; font-size: 0.6em !important;"><strong>Interest:</strong> K{{formatNumber(expectedPayment.interest, 2)}}</div>
+						<div style="float: right !important; font-size: 0.6em !important;"><strong>Penalties:</strong> K{{formatNumber(expectedPayment.penalty, 2)}}</div>
+						
+					</div>
+				</div>
+			</ion-item>
+			
+		
+		</ion-list>
+		
+		<ion-list *ngSwitchCase="'repaymentsMade'" ion-row style="padding-right: 0px !important; margin-right:0px !important">
+			<ion-item padding-right>
+				<strong style="font-size: 1.5rem !important">Payments Your Have Made</strong><br>
+				<span style="white-space: normal; font-size: 1.2rem !important">Your list of all repayments your have made on this loan.</span>
+			</ion-item>
+			<ion-item padding-right>
+				<strong style="font-size: 1.2em !important">Loan Details</strong><br>
+				<div style="font-size: 0.6em !important; font-size: 0.9em !important;"><strong>Group:</strong> {{repaymentGroupName}}</div>	
+				<div style="font-size: 0.6em !important; font-size: 0.9em !important;"><strong>Loan Number:</strong> {{repaymentLoanNo}}</div>	
+				<div style="clear:both; float: left !important; font-size: 0.9em !important;"><strong>Principal:</strong> K{{formatNumber(repaymentLoanPrincipal, 2)}}</div>
+				<div style="float: right !important; font-size: 0.9em !important;"><strong>Interest Rate:</strong> {{repaymentLoanInterest}}</div>
+				<div style="clear:both; float: left !important; font-size: 0.9em !important;"><strong>Loan Period:</strong> {{repaymentLoanPeriod}}</div>
+				<div style="float: right !important; font-size: 0.9em !important;"><strong>Penalty Applicable:</strong> {{formatNumber(repaymentLoanPenalty, 2)}}</div>
+			</ion-item>
+			<ion-item *ngFor="let repayment of repayments; let i4=index" [style.background-color]="repayment.bgColor" style="padding: 0px !important; border-bottom: 2px solid #4B8D23;">
+				<div>
+					<div col-2 style="float: left !important; font-size: 1.3em !important;">
+						<div [style.background-color]="repayment.iconBgColor" style="text-align: center; font-size: 1.6em !important; padding-top: 5px !important; padding-bottom: 5px !Important">
+							<strong style="color: #fff !important;">{{repayment.iconTxt}}</strong>
+						</div>
+					</div>
+					<div col-10 style="float: left !important; font-size: 1.3em !important;">
+						<div col-7 style="float: left !important; padding-left: 0px !important; font-size: 1.0em !important;"><strong>K{{formatNumber(repayment.amount, 2)}}</strong></div>
+						
+						<div style="clear:both; float: left !important; font-size: 0.6em !important;"><strong>Date Paid:</strong> {{repayment.datePaid}}</div>
+						<div style="float: right !important; font-size: 0.6em !important;"><strong>Principal:</strong> K{{formatNumber(repayment.principal, 2)}}</div>
+						<div style="clear: both !important; float: left !important; font-size: 0.6em !important;"><strong>Interest:</strong> K{{formatNumber(repayment.interest, 2)}}</div>
+						<div style="float: right !important; font-size: 0.6em !important;"><strong>Penalties:</strong> K{{formatNumber(repayment.penalty, 2)}}</div>
+						
+					</div>
+				</div>
+			</ion-item>
+			
+		
+		</ion-list>
+	</div>
+
+</ion-content>
